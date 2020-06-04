@@ -7,14 +7,7 @@
 				"name": "GetFileList",
 				"description": "Get the list of file",
 				"type": "GetMetadata",
-				"dependsOn": [
-					{
-						"activity": "ValidateFiles",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -214,27 +207,6 @@
 						"value": "@equals(item().type, 'File')",
 						"type": "Expression"
 					}
-				}
-			},
-			{
-				"name": "ValidateFiles",
-				"type": "Validation",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"dataset": {
-						"referenceName": "BinaryDataSource_File",
-						"type": "DatasetReference",
-						"parameters": {
-							"Container": {
-								"value": "@pipeline().parameters.SourceStore_Location",
-								"type": "Expression"
-							}
-						}
-					},
-					"timeout": "7.00:00:00",
-					"sleep": 10,
-					"minimumSize": 1
 				}
 			}
 		],
