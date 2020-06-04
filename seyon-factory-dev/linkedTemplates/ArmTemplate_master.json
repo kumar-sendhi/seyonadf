@@ -15,6 +15,14 @@
 			"type": "string",
 			"defaultValue": "storage-access-key"
 		},
+		"tr_movefile_properties_MoveFiles_parameters_SourceStore_Location": {
+			"type": "string",
+			"defaultValue": "sink"
+		},
+		"tr_movefile_properties_MoveFiles_parameters_DestinationStore_Location": {
+			"type": "string",
+			"defaultValue": "stage"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -47,6 +55,12 @@
 					},
 					"StorageLS_properties_typeProperties_connectionString_secretName": {
 						"value": "[parameters('StorageLS_properties_typeProperties_connectionString_secretName')]"
+					},
+					"tr_movefile_properties_MoveFiles_parameters_SourceStore_Location": {
+						"value": "[parameters('tr_movefile_properties_MoveFiles_parameters_SourceStore_Location')]"
+					},
+					"tr_movefile_properties_MoveFiles_parameters_DestinationStore_Location": {
+						"value": "[parameters('tr_movefile_properties_MoveFiles_parameters_DestinationStore_Location')]"
 					}
 				}
 			},

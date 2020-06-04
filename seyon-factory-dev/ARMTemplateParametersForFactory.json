@@ -10,6 +10,12 @@
 		},
 		"StorageLS_properties_typeProperties_connectionString_secretName": {
 			"value": "storage-access-key"
+		},
+		"tr_movefile_properties_MoveFiles_parameters_SourceStore_Location": {
+			"value": "sink"
+		},
+		"tr_movefile_properties_MoveFiles_parameters_DestinationStore_Location": {
+			"value": "stage"
 		}
 	}
 }

@@ -14,6 +14,14 @@
 		"StorageLS_properties_typeProperties_connectionString_secretName": {
 			"type": "string",
 			"defaultValue": "storage-access-key"
+		},
+		"tr_movefile_properties_MoveFiles_parameters_SourceStore_Location": {
+			"type": "string",
+			"defaultValue": "sink"
+		},
+		"tr_movefile_properties_MoveFiles_parameters_DestinationStore_Location": {
+			"type": "string",
+			"defaultValue": "stage"
 		}
 	},
 	"variables": {
@@ -415,6 +423,44 @@
 				"[concat(variables('factoryId'), '/datasets/BinaryDataSource_Folder')]",
 				"[concat(variables('factoryId'), '/datasets/BinaryDataSource_File')]",
 				"[concat(variables('factoryId'), '/datasets/BinaryDataDestination')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tr_movefile')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "MoveFiles",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"SourceStore_Location": "[parameters('tr_movefile_properties_MoveFiles_parameters_SourceStore_Location')]",
+							"DestinationStore_Location": "[parameters('tr_movefile_properties_MoveFiles_parameters_DestinationStore_Location')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Month",
+						"interval": 1,
+						"startTime": "2020-06-04T16:32:00.000Z",
+						"timeZone": "UTC",
+						"schedule": {
+							"monthDays": [
+								-1
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/MoveFiles')]"
 			]
 		}
 	]
